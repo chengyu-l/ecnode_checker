@@ -1,14 +1,12 @@
-module github.com/chengyu-l/cfs-ecnode-checker
+module github.com/chengyu-l/ecnode_checker
 
-go 1.14
+go 1.13
 
 require (
-	github.com/chengyu-l/chubaofs v2.0.1-0.20200818073913-4039780a1f84+incompatible
-	github.com/chubaofs/chubaofs v2.1.0+incompatible // indirect
-	github.com/google/uuid v1.1.1 // indirect
-	github.com/gorilla/mux v1.7.4 // indirect
+	github.com/google/uuid v1.1.1
+	github.com/gorilla/mux v1.7.4
+	github.com/prometheus/client_golang v0.9.3
 	github.com/spf13/cobra v1.0.0
-	github.com/tiglabs/raft v0.0.0-20200304095606-b25a44ad8b33 // indirect
+	golang.org/x/net v0.0.0-20190522155817-f3200d17e092
+	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 )
-
-replace github.com/chubaofs/chubaofs v2.1.0+incompatible => github.com/chengyu-l/chubaofs v2.0.1-0.20200818073913-4039780a1f84+incompatible // indirect
