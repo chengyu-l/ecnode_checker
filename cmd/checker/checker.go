@@ -2,6 +2,7 @@ package checker
 
 import (
 	"fmt"
+	"github.com/chengyu-l/ecnode_checker/cmd/root"
 	"github.com/chengyu-l/ecnode_checker/pkg/checker"
 	"github.com/spf13/cobra"
 	"os"
@@ -37,7 +38,7 @@ func init() {
 
 func startCheck(cmd *cobra.Command, args []string) error {
 	partitionID, _ := strconv.ParseUint(cfg.partitionId, 10, 0)
-	checker, err := checker.NewChecker(partitionID, strings.Split(cfg.hosts, ","))
+	checker, err := checker.NewChecker(root.Context, partitionID, strings.Split(cfg.hosts, ","))
 	if err != nil {
 		fmt.Printf("NewChecker err:%v\n", err)
 		os.Exit(1)

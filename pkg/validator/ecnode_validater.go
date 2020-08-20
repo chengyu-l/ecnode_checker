@@ -21,6 +21,20 @@ func NewValidator(ctx *ecnode.Context, partitionID, extentID uint64) (*Validator
 }
 
 func (v *Validator) StartValidate() error {
+	err := v.requestEcPartition()
+	if err != nil {
+		
+	}
+	
+	err = v.doValidate()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (v *Validator) doValidate() error {
 	request := ecnode.NewRequest(proto.OpValidateEcDataPartition)
 	request.PartitionID = v.partitionID
 	request.ExtentID = v.extentID
@@ -32,6 +46,9 @@ func (v *Validator) StartValidate() error {
 	if request.ResultCode != proto.OpOk {
 		return fmt.Errorf("response not ok. resultCode:%v", request.ResultCode)
 	}
-
 	return nil
+}
+
+func (v *Validator) requestEcPartition() proto.EcPartitionInfo {
+	
 }
