@@ -39,18 +39,18 @@ func (v *Validator) StartValidate() error {
 		err = v.doValidate(ecNodeAddr, extent)
 		if err != nil {
 			// validate fail
-			msg := fmt.Sprintf("ep(%v) node(%v) extent(%v) size(%v) validate fail",
+			msg := fmt.Sprintf("ep(%v) node(%v) extent(%v) size(%v) validate fail\n",
 				v.partitionID, ecNodeAddr, extent.FileID, extent.Size)
 			logger.Record(msg)
 		} else {
 			// validate success
-			msg := fmt.Sprintf("ep(%v) node(%v) extent(%v) size(%v) validate success",
+			msg := fmt.Sprintf("ep(%v) node(%v) extent(%v) size(%v) validate success\n",
 				v.partitionID, ecNodeAddr, extent.FileID, extent.Size)
 			logger.Record(msg)
 		}
 	}
 
-	logger.Record("validate finished")
+	logger.Record("validate finished\n")
 	logger.Close()
 	return nil
 }
