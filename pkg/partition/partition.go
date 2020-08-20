@@ -16,7 +16,6 @@ func RequestEcPartition(ctx *checker.Context, partitionID uint64) (ep *proto.EcP
 			continue
 		}
 
-		fmt.Printf("%s\n", data)
 		ep = &proto.EcPartitionInfo{}
 		reply := &proto.HTTPReply{}
 		reply.Data = ep

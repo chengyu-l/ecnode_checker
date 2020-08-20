@@ -74,5 +74,11 @@ func (l *Logger) Close() {
 }
 
 func getOutFilePath(fileName string) string {
-	return fmt.Sprintf("%v/%v/%v", outPath, time.Now().Format("2006010215"), fileName)
+	path := fmt.Sprintf("%v/%v", outPath, time.Now().Format("2006010215"))
+	exists, _ := utils.PathExists(path)
+	if !exists {
+		_ = os.MkdirAll(path, 0666)
+	}
+
+	return fmt.Sprintf("%v/%v", path, fileName)
 }
