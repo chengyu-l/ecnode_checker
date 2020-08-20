@@ -8,7 +8,7 @@ import (
 	"github.com/chengyu-l/ecnode_checker/pkg/utils"
 )
 
-func RequestEcPartition(ctx *checker.Context, partitionID uint64) (ep *proto.DataPartitionInfo, err error) {
+func RequestEcPartition(ctx *checker.Context, partitionID uint64) (ep *proto.EcPartitionInfo, err error) {
 	for i := 0; i < len(ctx.MasterAddr); i++ {
 		url := fmt.Sprintf("http://%v/ecPartition/get?id=%v", ctx.MasterAddr[i], partitionID)
 		data, err := utils.HttpGetRequest(url)
@@ -17,7 +17,7 @@ func RequestEcPartition(ctx *checker.Context, partitionID uint64) (ep *proto.Dat
 		}
 
 		fmt.Printf("%s\n", data)
-		ep = &proto.DataPartitionInfo{}
+		ep = &proto.EcPartitionInfo{}
 		reply := &proto.HTTPReply{}
 		reply.Data = ep
 		err = json.Unmarshal(data, reply)
