@@ -23,7 +23,7 @@ func NewValidator(ctx *checker.Context, partitionID uint64) (*Validator, error) 
 }
 
 func (v *Validator) StartValidate() error {
-	ep, err := partition.RequestPartition(v.ctx, v.partitionID)
+	ep, err := partition.RequestEcPartition(v.ctx, v.partitionID)
 	if err != nil || ep == nil || ep.PartitionID == 0{
 		return fmt.Errorf("request partition fail. err:%v", err)
 	}

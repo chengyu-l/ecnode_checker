@@ -8,9 +8,9 @@ import (
 	"github.com/chengyu-l/ecnode_checker/pkg/utils"
 )
 
-func RequestPartition(ctx *checker.Context, partitionID uint64) (ep *proto.DataPartitionInfo, err error) {
+func RequestEcPartition(ctx *checker.Context, partitionID uint64) (ep *proto.DataPartitionInfo, err error) {
 	for i := 0; i < len(ctx.MasterAddr); i++ {
-		url := fmt.Sprintf("http://%v/dataPartition/get?id=%v", ctx.MasterAddr[i], partitionID)
+		url := fmt.Sprintf("http://%v/ecPartition/get?id=%v", ctx.MasterAddr[i], partitionID)
 		data, err := utils.HttpGetRequest(url)
 		if err != nil {
 			continue
