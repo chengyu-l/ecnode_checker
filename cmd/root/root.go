@@ -9,8 +9,8 @@ var Cmd = &cobra.Command{
 	Use: "ecnode",
 }
 
-var Context *ecnode.Context
+var Context *utils.Context
 
 func init() {
-	Context = ecnode.NewContext()
+	Context = utils.NewContext()
 }

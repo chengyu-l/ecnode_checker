@@ -1,4 +1,4 @@
-package ecnode
+package checker
 
 import (
 	"encoding/json"

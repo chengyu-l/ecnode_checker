@@ -12,10 +12,10 @@ type Checker struct {
 	node        string
 	partitionID uint64
 	hosts       []string
-	ctx         *ecnode.Context
+	ctx         *utils.Context
 }
 
-func NewChecker(ctx *ecnode.Context, partitionID uint64, hosts []string) (*Checker, error) {
+func NewChecker(ctx *utils.Context, partitionID uint64, hosts []string) (*Checker, error) {
 	if len(hosts) != 6 {
 		return nil, fmt.Errorf("a partition must have 6 EcNode")
 	}
@@ -43,12 +43,12 @@ func (c *Checker) StartCheck() (err error) {
 		return err
 	}
 
-	request := ecnode.NewRequest(proto.OpChangeEcPartitionMembers)
+	request := utils.NewRequest(proto.OpChangeEcPartitionMembers)
 	request.PartitionID = c.partitionID
 	request.Data = marshaled
 	request.Size = uint32(len(marshaled))
 	request.CRC = crc32.ChecksumIEEE(marshaled)
-	err = ecnode.DoRequest(request, c.node, 30)
+	err = utils.DoRequest(request, c.node, 30)
 	if err != nil {
 		return
 	}

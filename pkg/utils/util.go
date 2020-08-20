@@ -1,10 +1,12 @@
-package ecnode
+package utils
 
 import (
 	"fmt"
 	"github.com/chengyu-l/ecnode_checker/pkg/chubaofs/proto"
 	"github.com/chengyu-l/ecnode_checker/pkg/chubaofs/repl"
+	"io/ioutil"
 	"net"
+	"net/http"
 	"os"
 )
 
@@ -52,4 +54,15 @@ func PathExists(path string) (bool, error) {
 		return false, nil
 	}
 	return false, err
+}
+
+
+func HttpGetRequest(url string) ([]byte, error) {
+	response, err := http.Get(url)
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+	return ioutil.ReadAll(response.Body)
 }

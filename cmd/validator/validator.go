@@ -21,14 +21,11 @@ var (
 
 type config struct {
 	partitionId string
-	extentId    string
 }
 
 func addCheckerConfigFlags(command *cobra.Command) {
 	command.Flags().StringVar(&cfg.partitionId, "partitionId", "", "partitionId")
 	command.MarkFlagRequired("partitionId")
-	command.Flags().StringVar(&cfg.extentId, "extentId", "", "extentId")
-	command.MarkFlagRequired("extentId")
 }
 
 func init() {
@@ -37,8 +34,7 @@ func init() {
 
 func startValidate(cmd *cobra.Command, args []string) error {
 	partitionID, _ := strconv.ParseUint(cfg.partitionId, 10, 0)
-	extentID, _ := strconv.ParseUint(cfg.extentId, 10, 0)
-	newValidator, err := validator.NewValidator(root.Context, partitionID, extentID)
+	newValidator, err := validator.NewValidator(root.Context, partitionID)
 	if err != nil {
 		fmt.Printf("NewValidator err:%v\n", err)
 		os.Exit(1)
