@@ -1,7 +1,7 @@
 package root
 
 import (
-	"github.com/chengyu-l/ecnode_checker/pkg/ecnode"
+	"github.com/chengyu-l/ecnode_checker/pkg/checker"
 	"github.com/spf13/cobra"
 )
 
@@ -9,8 +9,8 @@ var Cmd = &cobra.Command{
 	Use: "ecnode",
 }
 
-var Context *utils.Context
+var Context *checker.Context
 
 func init() {
-	Context = utils.NewContext()
+	Context = checker.NewContext()
 }

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/chengyu-l/ecnode_checker/pkg/chubaofs/proto"
-	"github.com/chengyu-l/ecnode_checker/pkg/ecnode"
+	"github.com/chengyu-l/ecnode_checker/pkg/utils"
 	"hash/crc32"
 )
 
@@ -12,10 +12,10 @@ type Checker struct {
 	node        string
 	partitionID uint64
 	hosts       []string
-	ctx         *utils.Context
+	ctx         *Context
 }
 
-func NewChecker(ctx *utils.Context, partitionID uint64, hosts []string) (*Checker, error) {
+func NewChecker(ctx *Context, partitionID uint64, hosts []string) (*Checker, error) {
 	if len(hosts) != 6 {
 		return nil, fmt.Errorf("a partition must have 6 EcNode")
 	}
