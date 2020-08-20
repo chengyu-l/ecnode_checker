@@ -17,11 +17,9 @@ func RequestEcExtents(nodeAddr string, partitionID uint64) (extents []*storage.E
 		return nil, fmt.Errorf("request extents fail. resultCode:%v err:%v", request.ResultCode, err)
 	}
 
-	if len(request.Data) > 0 {
-		err = json.Unmarshal(request.Data, extents)
-		if err != nil {
-			return nil, fmt.Errorf("unmarshal extents fail. err:%v", err)
-		}
+	err = json.Unmarshal(request.Data, extents)
+	if err != nil {
+		return nil, fmt.Errorf("unmarshal extents fail. data(%v) err:%v", string(request.Data), err)
 	}
 
 	return
