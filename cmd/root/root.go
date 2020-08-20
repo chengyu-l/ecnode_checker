@@ -6,7 +6,7 @@ import (
 )
 
 var Cmd = &cobra.Command{
-	Use: "ecnode",
+	Use: "ecnode_checker",
 }
 
 var Context *checker.Context
