@@ -171,7 +171,7 @@ type VolStatInfo struct {
 }
 
 // DataPartition represents the structure of storing the file contents.
-type DataPartitionInfo struct {
+type EcDataPartitionInfo struct {
 	PartitionID             uint64
 	LastLoadedTime          int64
 	ReplicaNum              uint8
@@ -217,7 +217,7 @@ type DataReplica struct {
 
 // EcPartition represents the structure of storing the file contents by erasure code.
 type EcPartitionInfo struct {
-	*DataPartitionInfo
+	*EcDataPartitionInfo
 	EcReplicas          []*EcReplica
 	DataUnitsNum        uint8
 	ParityUnitsNum      uint8
