@@ -33,7 +33,7 @@ func NewLogger(fileName string) *Logger {
 	}
 
 	closeChan := make(chan byte)
-	closeOutFileAfter(outFile, closeChan)
+	go closeOutFileAfter(outFile, closeChan)
 	return &Logger{
 		fileName:  fileName,
 		filePath:  filePath,
