@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CONFIG_FILE = "ecnode.json"
+	CONFIG_FILE = "ecnode_checker.json"
 )
 
 type Context struct {
