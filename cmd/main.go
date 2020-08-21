@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/chengyu-l/ecnode_checker/cmd/changemember"
 	"github.com/chengyu-l/ecnode_checker/cmd/ecmonkey"
+	"github.com/chengyu-l/ecnode_checker/cmd/repair"
 	"github.com/chengyu-l/ecnode_checker/cmd/root"
 	"github.com/chengyu-l/ecnode_checker/cmd/validator"
 )
@@ -19,6 +20,7 @@ func addCommands() {
 	root.Cmd.AddCommand(
 		validator.Cmd,
 		ecmonkey.Cmd,
+		repair.Cmd,
 		changemember.Cmd,
 	)
 }

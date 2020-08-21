@@ -156,6 +156,7 @@ const (
 	OpDecommissionEcPartition  uint8 = 0xB5
 	OpUpdateEcDataPartition    uint8 = 0xB6
 	OpValidateEcDataPartition  uint8 = 0xB7
+	OpEcExtentRepair           uint8 = 0xB8
 
 	// Commons
 	OpIntraGroupNetErr uint8 = 0xF3

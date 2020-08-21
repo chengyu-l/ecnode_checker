@@ -1,17 +1,17 @@
-package validator
+package repair
 
 import (
 	"fmt"
 	"github.com/chengyu-l/ecnode_checker/cmd/root"
-	"github.com/chengyu-l/ecnode_checker/pkg/validator"
+	"github.com/chengyu-l/ecnode_checker/pkg/repair"
 	"github.com/spf13/cobra"
 	"os"
 	"strconv"
 )
 
 var Cmd = &cobra.Command{
-	Use:   "validate",
-	Short: "validate EcExtent of EcPartition on EcNode",
+	Use:   "repair",
+	Short: "repair EcExtent of EcPartition on EcNode",
 	RunE:  startValidate,
 }
 
@@ -21,11 +21,13 @@ var (
 
 type config struct {
 	partitionId string
+	extentId    string
 }
 
 func addCheckerConfigFlags(command *cobra.Command) {
 	command.Flags().StringVar(&cfg.partitionId, "partitionId", "", "partitionId")
 	command.MarkFlagRequired("partitionId")
+	command.Flags().StringVar(&cfg.extentId, "extentId", "", "If set extentId, it will only repair this extent, otherwise, repair all extents in this EcPartition")
 }
 
 func init() {
@@ -34,18 +36,19 @@ func init() {
 
 func startValidate(cmd *cobra.Command, args []string) error {
 	partitionID, _ := strconv.ParseUint(cfg.partitionId, 10, 0)
-	newValidator, err := validator.NewValidator(root.Context, partitionID)
+	extentID, _ := strconv.ParseUint(cfg.extentId, 10, 0)
+	newRepair, err := repair.NewRepair(root.Context, partitionID, extentID)
 	if err != nil {
 		fmt.Printf("NewValidator err:%v\n", err)
 		os.Exit(1)
 	}
 
-	isSuccess, err := newValidator.StartValidate()
+	isSuccess, err := newRepair.StartRepair()
 	if err != nil || !isSuccess {
-		fmt.Printf("validate fail. err:%v\n", err)
+		fmt.Printf("repair fail. err:%v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Println("validate success")
+	fmt.Println("repair success")
 	return nil
 }
